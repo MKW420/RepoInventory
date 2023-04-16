@@ -22,13 +22,12 @@ namespace APIPractice.Controllers
         {
             var brands = _context.brands.ToList();
 
+            //yeild and return each brand 
             foreach (var brand in brands)
             {
                 yield return brand;
             }
             
-            
-           // return new string[] { "value1", "value2" };
         }
 
         // GET api/<BrandsController>/5
