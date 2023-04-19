@@ -7,10 +7,16 @@ using System.Threading.Tasks;
 
 namespace RepositoryLayer.Repository
 {
-    internal class IRepository<T> where T : EntityBaseRepository
+    public interface IRepository<T> where T : EntityBaseRepository
     {
 
-
+        IEnumerable<T> GetAll();
+        T Get(int id);
+        void Insert(T entity);
+        void Update(T entity);
+        void Delete(T entity);
+        void DeleteById(int id);
+        void SaveChanges();
 
     }
 }
