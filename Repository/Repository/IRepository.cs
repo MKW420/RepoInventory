@@ -1,4 +1,5 @@
 ﻿using APIPractice.Data.Base;
+using APIPractice.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,12 +12,14 @@ namespace RepositoryLayer.Repository
     {
 
         IEnumerable<T> GetAll();
-        T Get(int id);
+        T Get(Guid id);
         void Insert(T entity);
         void Update(T entity);
         void Delete(T entity);
-        void DeleteById(int id);
+        void Remove(T entity);
+      //  void DeleteById(Guid id);
         void SaveChanges();
-
+       // void Delete(Guid id);
+       // Brand Get(Guid id);
     }
 }

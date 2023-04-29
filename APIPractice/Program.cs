@@ -1,5 +1,8 @@
 using APIPractice.Data;
+using RepositoryLayer;
 using Microsoft.EntityFrameworkCore;
+using RepositoryLayer.Repository;
+using ServiceLayer.BrandService;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,6 +11,8 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultconnectionString")));
 
+builder.Services.AddScoped(typeof(IRepository<>),typeof(Repository<>));
+builder.Services.AddTransient<IBrandService, BrandService>();
 
 // Add services to the container.
 

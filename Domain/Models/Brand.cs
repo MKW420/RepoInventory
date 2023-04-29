@@ -3,12 +3,11 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace APIPractice.Models
 {
-    [Table("Brand")]
+    //[Table("Brand")]
     public class Brand: EntityBaseRepository
     {
-
-      
-
-        public string Brand_Name { get; set; }    
+       
+        public string Brand_Name { get; set; }
+       
     }
 }

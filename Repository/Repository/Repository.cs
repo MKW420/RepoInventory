@@ -29,23 +29,23 @@ namespace RepositoryLayer.Repository
 
             }
             entities.Remove(entity);
-            _appDbContext.SaveChanges();
+           _appDbContext.SaveChanges();
 
         }
 
-        public void DeleteById(int id)
+        public void DeleteById(Guid id)
         {
             throw new NotImplementedException();
         }
 
-        public T Get(int id)
+        public T Get(Guid id)
         {
             return entities.SingleOrDefault( x => x.Id.Equals(id));
         }
 
         public IEnumerable<T> GetAll()
         {
-            throw new NotImplementedException();
+            return entities.AsEnumerable();
         }
 
         public void Insert(T entity)
@@ -58,6 +58,18 @@ namespace RepositoryLayer.Repository
             }
             entities.Add(entity);
             _appDbContext.SaveChanges();
+
+        }
+
+        public void Remove(T entity)
+        {
+            if (entity == null)
+            {
+                throw new ArgumentNullException("entity");
+
+            }
+            entities.Remove(entity);
+           
 
         }
 

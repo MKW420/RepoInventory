@@ -1,7 +1,7 @@
 ﻿using APIPractice.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace APIPractice.Data
+namespace RepositoryLayer
 {
     public class AppDbContext : DbContext
     {
@@ -12,15 +12,15 @@ namespace APIPractice.Data
         }
 
         //for the many to many reltionships between the tables
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
+       // protected override void OnModelCreating(ModelBuilder modelBuilder)
+       // {
             //one to many reltionship between travellers and bookings
 
-            base.OnModelCreating(modelBuilder);
+           // base.OnModelCreating(modelBuilder);
 
-        }
+      //  }
 
 
-        public virtual DbSet<Brand> brands { get; set; }
+        public virtual DbSet<Brand> brand { get; set; }
     }
 }

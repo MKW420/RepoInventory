@@ -1,6 +1,6 @@
 ﻿namespace APIPractice.Models
 {
-    public class Categories
+    public class Category
     {
 
         public string Category_Name { get; set; }

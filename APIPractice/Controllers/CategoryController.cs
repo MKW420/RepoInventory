@@ -6,7 +6,7 @@ namespace APIPractice.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class CategoriesController : ControllerBase
+    public class CategoryController : ControllerBase
     {
         // GET: api/<CategoryController>
         [HttpGet]

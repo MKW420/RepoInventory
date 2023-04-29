@@ -13,29 +13,95 @@ namespace ServiceLayer.BrandService
 
         private IRepository<Brand> _repository;
 
-        public void DeleteBrand(Brand brand)
+        public BrandService(IRepository<Brand> repository)
         {
-            _repository.Delete(brand);
+            _repository = repository;
+        }
+
+        public void DeleteBrand(Guid id)
+        {
+            try
+            {
+                if(id != null)
+                {
+                    Brand brand = GetBrandById(id);
+                    _repository.Remove(brand);
+                    _repository.SaveChanges();
+
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+
+            }
+          
         }
 
         public IEnumerable<Brand> GetAllBrands()
         {
-            return _repository.GetAll();
+
+            try
+            {
+                var obj =  _repository.GetAll();
+                if (obj == null)
+                {
+                    return obj;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+
+            }
+          
         }
 
-        public Brand GetBrandById(int id)
+        public Brand GetBrandById(Guid id)
         {
-           return _repository.Get(id);
+            try
+            {
+                 var obj =  _repository.Get(id);
+                if(obj == null)
+                {
+                    return obj;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+         
         }
 
-        public void InserBrand(Brand brand)
+        public void InsertBrand(Brand brand)
         {
             _repository.Insert(brand);
         }
 
         public void UpdateBrand(Brand brand)
         {
-            _repository.Update(brand);
+            try
+            {
+                if(brand != null) {
+                    
+                        _repository.Update(brand);
+                    } 
+             
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+           
         }
     }
 }

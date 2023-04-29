@@ -12,14 +12,14 @@ namespace ServiceLayer.BrandService
 
         IEnumerable<Brand> GetAllBrands();
 
-        Brand GetBrandById(int id);
+        Brand GetBrandById(Guid id);
 
-        void InserBrand(Brand brand);
+        void InsertBrand(Brand brand);
 
         void UpdateBrand(Brand brand);
 
-        void DeleteBrand(Brand brand);
+        void DeleteBrand(Guid id);
 
-
+ 
     }
 }
