@@ -10,7 +10,8 @@ using System.Threading.Tasks;
 
 namespace DomainLayer.EntityMapper
 {
-    public class BrandMap 
+    public class BrandMap
     {
+      
     }
 }

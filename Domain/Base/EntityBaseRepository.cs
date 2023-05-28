@@ -1,4 +1,4 @@
-﻿namespace APIPractice.Data.Base
+﻿namespace DomainLayer.Base
 {
     public class EntityBaseRepository
     {

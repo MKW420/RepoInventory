@@ -1,5 +1,6 @@
-﻿using APIPractice.Data.Base;
+﻿
 using APIPractice.Models;
+using DomainLayer.Base;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace RepositoryLayer.Repository
 {
-    public interface IRepository<T> where T : EntityBaseRepository
+    public interface IRepository<T> where T : class
     {
 
         IEnumerable<T> GetAll();

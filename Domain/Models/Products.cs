@@ -1,4 +1,5 @@
-﻿using APIPractice.Data.Base;
+﻿
+using DomainLayer.Base;
 
 namespace APIPractice.Models
 {

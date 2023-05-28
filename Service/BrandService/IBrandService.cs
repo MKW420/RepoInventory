@@ -1,4 +1,5 @@
-﻿using APIPractice.Models;
+﻿using DomainLayer.Models;
+using RepositoryLayer.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;

@@ -1,4 +1,4 @@
-﻿using APIPractice.Models;
+﻿using DomainLayer.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace RepositoryLayer
@@ -21,6 +21,6 @@ namespace RepositoryLayer
       //  }
 
 
-        public virtual DbSet<Brand> brand { get; set; }
+        public DbSet<Brand> brand { get; set; }
     }
 }

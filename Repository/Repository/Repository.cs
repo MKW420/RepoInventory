@@ -1,5 +1,5 @@
-﻿using APIPractice.Data;
-using APIPractice.Data.Base;
+﻿
+using DomainLayer.Base;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;

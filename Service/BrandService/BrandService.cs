@@ -1,4 +1,4 @@
-﻿using APIPractice.Models;
+﻿using DomainLayer.Models;
 using RepositoryLayer.Repository;
 using System;
 using System.Collections.Generic;
@@ -37,14 +37,17 @@ namespace ServiceLayer.BrandService
             }
           
         }
-
+        /// <summary>
+        /// Deletes a specific TodoItem.
+        /// </summary>
         public IEnumerable<Brand> GetAllBrands()
         {
 
             try
             {
                 var obj =  _repository.GetAll();
-                if (obj == null)
+
+                if (obj != null)
                 {
                     return obj;
                 }
@@ -66,7 +69,7 @@ namespace ServiceLayer.BrandService
             try
             {
                  var obj =  _repository.Get(id);
-                if(obj == null)
+                if(obj != null)
                 {
                     return obj;
                 }

@@ -1,5 +1,5 @@
 ﻿using RepositoryLayer;
-using APIPractice.Models;
+using DomainLayer.Models;
 using Microsoft.AspNetCore.Mvc;
 using ServiceLayer.BrandService;
 using System.Reflection.Metadata.Ecma335;
@@ -18,42 +18,43 @@ namespace APIPractice.Controllers
 
         
         //var _Db;
-        private AppDbContext _context;
+     //   private AppDbContext _context;
         public BrandController(IBrandService brandService)
         {
            _brandService = brandService;
         }
 
 
-        // GET: api/<BrandsController>
-        [HttpGet("{GetBrandByID}")]
-        public IActionResult GetBrands(Guid id)
-        {
-            var brands = _brandService.GetBrandById(id);
+        //// GET: api/<BrandsController>
+        //[HttpGet("{GetBrandByID]
+        //public IActionResult GetBrands(Guid id)
+        //{
+        //    var brand = _brandService.GetBrandById(id);
 
-           if(brands is not null){
-                 return Ok(brands);
-            }
-            return BadRequest("No records found");    
-        }
+        //   if(brand is not null){
+        //         return Ok(brand);
+        //    }
+        //    return BadRequest("No records found");    
+        //}
 
 
         // GET api/<BrandsController>/5
-        [HttpGet("{GetAllBrands}")]
-        public IActionResult GetAllBrands()
+        [HttpGet]
+        public IEnumerable<Brand> GetAllBrands()
         {
-            var brands =  _brandService.GetAllBrands();
-            if (brands is not null) { 
-            
-                return Ok(brands);
-            
+
+            foreach (var brand in _brandService.GetAllBrands())
+            {
+                yield return brand;
             }
 
-            return BadRequest("No records found");
+
+
+
         }
 
         // POST api/<BrandsController>
-        [HttpPost("{InsertBrand}")]
+        [HttpPost]
         public IActionResult InsertBrand(Brand brand)
         { 
             _brandService.InsertBrand(brand);
@@ -63,7 +64,7 @@ namespace APIPractice.Controllers
         }
 
         // PUT api/<BrandsController>/5
-        [HttpPut("{UpdateBrandById}")]
+        [HttpPut]
         public IActionResult UpdateBrand(Brand brand)
         {
 
@@ -72,7 +73,7 @@ namespace APIPractice.Controllers
         }
 
         // DELETE api/<BrandsController>/5
-        [HttpDelete("{id}")]
+        [HttpDelete]
         public IActionResult DeleteBrand(Guid id)
         {
             _brandService.DeleteBrand(id);

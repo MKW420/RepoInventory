@@ -1,12 +1,12 @@
-﻿using APIPractice.Data.Base;
+﻿using DomainLayer.Base;
+
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace APIPractice.Models
+namespace DomainLayer.Models
 {
-    //[Table("Brand")]
+    [Table("Brand")]
     public class Brand: EntityBaseRepository
     {
-       
         public string Brand_Name { get; set; }
        
     }
