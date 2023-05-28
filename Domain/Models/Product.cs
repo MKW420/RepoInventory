@@ -3,7 +3,7 @@ using DomainLayer.Base;
 
 namespace APIPractice.Models
 {
-    public class Products : EntityBaseRepository
+    public class Product : EntityBaseRepository
     {
         //[Foreign Key]
 

@@ -4,6 +4,9 @@ using Microsoft.EntityFrameworkCore;
 using RepositoryLayer.Repository;
 using ServiceLayer.BrandService;
 using Microsoft.OpenApi.Models;
+using ServiceLayer.CategoryService;
+using ServiceLayer.ProductService;
+using ServiceLayer.SupplierService;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,7 +16,12 @@ builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultconnectionString")));
 
 builder.Services.AddScoped(typeof(IRepository<>),typeof(Repository<>));
+
+
 builder.Services.AddScoped<IBrandService, BrandService>();
+builder.Services.AddScoped<ICategoryService, CategoryService>();
+builder.Services.AddScoped<IProductService, ProductService>();
+builder.Services.AddScoped<ISupplierService, SupplierService>();
 
 // Add services to the container.
 

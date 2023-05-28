@@ -1,4 +1,5 @@
-﻿using DomainLayer.Models;
+﻿using APIPractice.Models;
+using DomainLayer.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace RepositoryLayer
@@ -22,5 +23,11 @@ namespace RepositoryLayer
 
 
         public DbSet<Brand> brand { get; set; }
+        public DbSet<Category> categories { get; set; }
+
+        public DbSet<Supplier> suppliers { get; set; }
+
+        public DbSet<Product> products { get; set; }
+
     }
 }

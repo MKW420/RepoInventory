@@ -1,4 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using APIPractice.Models;
+using DomainLayer.Models;
+using Microsoft.AspNetCore.Mvc;
+using ServiceLayer.BrandService;
+using ServiceLayer.CategoryService;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -8,36 +12,46 @@ namespace APIPractice.Controllers
     [ApiController]
     public class CategoryController : ControllerBase
     {
+
+        private readonly ICategoryService _categoryService;
+   
+        public CategoryController(ICategoryService categoryService)
+        {
+            _categoryService = categoryService;
+        }
+
         // GET: api/<CategoryController>
         [HttpGet]
-        public IEnumerable<string> Get()
+        public IEnumerable<Category> GetAllCategories()
         {
-            return new string[] { "value1", "value2" };
+
+            foreach (var category in _categoryService.GetAllCategories())
+            {
+                yield return category;
+            }
+
+
+
+
         }
 
-        // GET api/<CategoryController>/5
-        [HttpGet("{id}")]
-        public string Get(int id)
-        {
-            return "value";
-        }
-
-        // POST api/<CategoryController>
+        // POST api/<BrandsController>
         [HttpPost]
-        public void Post([FromBody] string value)
+        public IActionResult InsertCategory(Category category)
         {
+            _categoryService.InsertCategory(category);
+            return Ok("Data succesfully inserted");
+
+
         }
 
-        // PUT api/<CategoryController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        // PUT api/<BrandsController>/5
+        [HttpPut]
+        public IActionResult UpdateCategory(Category category)
         {
-        }
 
-        // DELETE api/<CategoryController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
+            _categoryService.UpdateCategory(category);
+            return Ok("Updating done");
         }
     }
 }
