@@ -20,6 +20,8 @@ namespace RepositoryLayer.Repository
         void Remove(T entity);
       //  void DeleteById(Guid id);
         void SaveChanges();
+
+        int Count();
        // void Delete(Guid id);
        // Brand Get(Guid id);
     }

@@ -21,6 +21,8 @@ namespace ServiceLayer.BrandService
 
         void DeleteBrand(Guid id);
 
+
+       Brand GetBrandBySearch(string searchString);
  
     }
 }

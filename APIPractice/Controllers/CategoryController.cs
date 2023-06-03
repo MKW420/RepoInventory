@@ -34,6 +34,20 @@ namespace APIPractice.Controllers
 
         }
 
+        //// GET: api/<categoriesController>
+        [HttpGet(nameof(GetByCategoryByID))]
+        public IActionResult GetByCategoryByID(Guid id)
+        {
+            var category = _categoryService.GetCategoryById(id);
+
+            if (category is not null)
+            {
+                return Ok(category);
+            }
+            return BadRequest("No records found");
+        }
+
+
         // POST api/<CategoryController>
         [HttpPost(nameof(InsertCategory))]
         public IActionResult InsertCategory(Category category)

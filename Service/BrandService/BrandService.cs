@@ -85,6 +85,11 @@ namespace ServiceLayer.BrandService
          
         }
 
+        public Brand GetBrandBySearch(string searchString)
+        {
+            throw new NotImplementedException();
+        }
+
         public void InsertBrand(Brand brand)
         {
             _repository.Insert(brand);
@@ -106,5 +111,12 @@ namespace ServiceLayer.BrandService
             }
            
         }
+
+
+       // public Brand GetBrandBySearch(string searchString)
+     //   {
+      //      return _repository.Where(x => x.Equals(searchString)) ;
+       // /}
+
     }
 }

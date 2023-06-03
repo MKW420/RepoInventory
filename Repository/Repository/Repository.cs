@@ -92,5 +92,8 @@ namespace RepositoryLayer.Repository
 
         }
         public int Count() { return entities.Count(); }
+
+       
+
     }
 }

@@ -31,6 +31,29 @@ namespace APIPractice.Controllers
             }
 
         }
+
+        //// GET: api/< ProductsController>
+        [HttpGet(nameof(GetProductByID))]
+        public IActionResult GetProductByID(Guid id)
+        {
+            var product = _productService.GetProductById(id);
+
+            if (product is not null)
+            {
+                return Ok(product);
+            }
+            return BadRequest("No records found");
+        }
+
+        [HttpGet(nameof(GetProductCount))]
+        public IActionResult GetProductCount()
+        {
+            int count = _productService.GetProductCount();
+
+            return Ok("Total number products is: " + count);
+
+            //  return BadRequest("No records found!");
+        }
         // POST api/<ProductController>
         [HttpPost(nameof(InsertProduct))]
         public IActionResult InsertProduct(Product product)
@@ -60,14 +83,6 @@ namespace APIPractice.Controllers
 
         }
 
-        [HttpGet(nameof(GetProductCount))]
-        public IActionResult GetProductCount()
-        {
-           int count = _productService.GetProductCount();
-          
-           return Ok("Total number products is: " + count);
-            
-          //  return BadRequest("No records found!");
-        }
+      
     }
 }

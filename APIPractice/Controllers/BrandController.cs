@@ -25,18 +25,7 @@ namespace APIPractice.Controllers
         }
 
 
-        //// GET: api/<BrandsController>
-        //[HttpGet("{GetBrandByID]
-        //public IActionResult GetBrands(Guid id)
-        //{
-        //    var brand = _brandService.GetBrandById(id);
-
-        //   if(brand is not null){
-        //         return Ok(brand);
-        //    }
-        //    return BadRequest("No records found");    
-        //}
-
+    
 
         // GET api/<BrandsController>/5
         [HttpGet(nameof(GetAllBrands))]
@@ -48,6 +37,19 @@ namespace APIPractice.Controllers
                 yield return brand;
             }
 
+        }
+
+        //// GET: api/<BrandsController>
+        [HttpGet(nameof(GetBrandByID))]
+        public IActionResult GetBrandByID(Guid id)
+        {
+            var brand = _brandService.GetBrandById(id);
+
+            if (brand is not null)
+            {
+                return Ok(brand);
+            }
+            return BadRequest("No records found");
         }
 
         // POST api/<BrandsController>
@@ -79,5 +81,12 @@ namespace APIPractice.Controllers
             return Ok("Deleted Data!");
 
         }
+
+
+      //  public IActionResult GetResult(string searchString) {
+
+
+          //  return _brandService.GetBrandBySearch(searchString);
+       // }
     }
 }
