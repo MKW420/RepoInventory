@@ -27,7 +27,7 @@ namespace RepositoryLayer
 
         public DbSet<Supplier> suppliers { get; set; }
 
-        public DbSet<Product> products { get; set; }
+        public DbSet<Product> product { get; set; }
 
     }
 }

@@ -46,6 +46,7 @@ namespace RepositoryLayer.Repository
         public IEnumerable<T> GetAll()
         {
             return entities.AsEnumerable();
+
         }
 
         public void Insert(T entity)
@@ -90,5 +91,6 @@ namespace RepositoryLayer.Repository
             _appDbContext.SaveChanges();
 
         }
+        public int Count() { return entities.Count(); }
     }
 }

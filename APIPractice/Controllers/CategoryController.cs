@@ -21,7 +21,7 @@ namespace APIPractice.Controllers
         }
 
         // GET: api/<CategoryController>
-        [HttpGet]
+        [HttpGet(nameof(GetAllCategories))]
         public IEnumerable<Category> GetAllCategories()
         {
 
@@ -30,13 +30,12 @@ namespace APIPractice.Controllers
                 yield return category;
             }
 
-
-
+            
 
         }
 
-        // POST api/<BrandsController>
-        [HttpPost]
+        // POST api/<CategoryController>
+        [HttpPost(nameof(InsertCategory))]
         public IActionResult InsertCategory(Category category)
         {
             _categoryService.InsertCategory(category);
@@ -45,13 +44,22 @@ namespace APIPractice.Controllers
 
         }
 
-        // PUT api/<BrandsController>/5
-        [HttpPut]
+        // PUT api/<CategoryController>/5
+        [HttpPut(nameof(UpdateCategory))]
         public IActionResult UpdateCategory(Category category)
         {
 
             _categoryService.UpdateCategory(category);
             return Ok("Updating done");
+        }
+
+        // DELETE api/<CategoryController>/5
+        [HttpDelete(nameof(DeleteCategory))]
+        public IActionResult DeleteCategory(Guid id)
+        {
+            _categoryService.DeleteCategory(id);
+            return Ok("Deleted Data!");
+
         }
     }
 }

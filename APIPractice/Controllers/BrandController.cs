@@ -39,32 +39,31 @@ namespace APIPractice.Controllers
 
 
         // GET api/<BrandsController>/5
-        [HttpGet]
+        [HttpGet(nameof(GetAllBrands))]
         public IEnumerable<Brand> GetAllBrands()
         {
-
+            
             foreach (var brand in _brandService.GetAllBrands())
             {
                 yield return brand;
             }
 
-
-
-
         }
 
         // POST api/<BrandsController>
-        [HttpPost]
+        [HttpPost(nameof(InsertBrand))]
         public IActionResult InsertBrand(Brand brand)
         { 
+
+          
             _brandService.InsertBrand(brand);
-            return Ok("Data inserted");
+            return Ok("Data successfully inserted");
 
 
         }
 
         // PUT api/<BrandsController>/5
-        [HttpPut]
+        [HttpPut(nameof(UpdateBrand))]
         public IActionResult UpdateBrand(Brand brand)
         {
 
@@ -73,7 +72,7 @@ namespace APIPractice.Controllers
         }
 
         // DELETE api/<BrandsController>/5
-        [HttpDelete]
+        [HttpDelete(nameof(DeleteBrand))]
         public IActionResult DeleteBrand(Guid id)
         {
             _brandService.DeleteBrand(id);
