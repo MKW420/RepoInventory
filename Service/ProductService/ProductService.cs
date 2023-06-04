@@ -32,10 +32,11 @@ namespace ServiceLayer.ProductService
 
         public IEnumerable<Product> GetAllProducts()
         {
+            
 
             try
             {
-                var obj = _repository.GetAll();
+                var obj = _repository.GetAll().ToList();
 
                 if (obj != null)
                 {

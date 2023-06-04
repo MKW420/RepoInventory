@@ -54,6 +54,52 @@ namespace APIPractice.Controllers
 
             //  return BadRequest("No records found!");
         }
+
+        [HttpGet(nameof(onSaleProducts))]
+
+        public IEnumerable<Product> onSaleProducts()
+        {
+            foreach (var product in _productService.GetAllProducts())
+            {
+                if (product.On_Sale)
+                {
+                    yield return product;
+                }
+            }
+
+        }
+
+        [HttpGet(nameof(notOnSaleProducts))]
+
+        public IEnumerable<Product> notOnSaleProducts()
+        {
+           
+            foreach (var product in _productService.GetAllProducts())
+            {
+                if (!product.On_Sale)
+                {
+                    yield return product;
+                }
+            }
+
+        }
+        [HttpGet(nameof(searchProductsByDescription))]
+
+        public IEnumerable<Product> searchProductsByDescription(string prod_descrip )
+        {
+
+            
+            foreach (var product in _productService.GetAllProducts())
+            {
+                
+                if (product.Prod_Description == prod_descrip)
+                {
+                   
+                    yield return product;
+                }
+            }
+
+        }
         // POST api/<ProductController>
         [HttpPost(nameof(InsertProduct))]
         public IActionResult InsertProduct(Product product)
@@ -84,5 +130,9 @@ namespace APIPractice.Controllers
         }
 
       
+
+   
+
+
     }
 }

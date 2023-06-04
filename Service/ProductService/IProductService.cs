@@ -20,5 +20,7 @@ namespace ServiceLayer.ProductService
         void UpdateProduct(Product product);
 
         int GetProductCount();
+
+       
     }
 }
