@@ -16,9 +16,7 @@ namespace APIPractice.Controllers
 
         private readonly IBrandService _brandService;
 
-        
-        //var _Db;
-     //   private AppDbContext _context;
+   
         public BrandController(IBrandService brandService)
         {
            _brandService = brandService;
@@ -82,7 +80,14 @@ namespace APIPractice.Controllers
 
         }
 
+     //   public List<Brand> GetThis()
+      //  {
+      //     List<Brand> result = new List<Brand>();
 
+      //      _brandService.GetAllBrands();
+
+          //  var brandy = _brandService.GetAllBrands().Where(x => x.Brand_Name == "hello").Select(p => p.)
+      //  }
       //  public IActionResult GetResult(string searchString) {
 
 

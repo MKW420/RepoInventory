@@ -15,6 +15,9 @@ namespace APIPractice.Models
         public string Thumbnail { get; set; }
         public int Prod_Qty { get; set; }
         public bool On_Sale { get; set; }
+        public bool Discontinued { get; set; }
+        public decimal Discounted_Price { get; set; }
+
  
     }
 }

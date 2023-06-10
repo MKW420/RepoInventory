@@ -59,7 +59,10 @@ namespace APIPractice.Controllers
 
         public IEnumerable<Product> onSaleProducts()
         {
-            foreach (var product in _productService.GetAllProducts())
+            foreach (var product in _pr
+                
+                    
+                       oductService.GetAllProducts())
             {
                 if (product.On_Sale)
                 {

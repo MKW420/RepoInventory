@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using APIPractice.Models;
+using Microsoft.AspNetCore.Mvc;
+using ServiceLayer.SupplierService;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -8,36 +10,71 @@ namespace APIPractice.Controllers
     [ApiController]
     public class SupplierController : ControllerBase
     {
-        // GET: api/<SupplierController>
-        [HttpGet]
-        public IEnumerable<string> Get()
+
+        private readonly ISupplierService _supplierService;
+
+        public SupplierController(ISupplierService supplierService)
         {
-            return new string[] { "value1", "value2" };
+            _supplierService = supplierService;
         }
+
+        // GET: api/<SupplierController>
+        [HttpGet(nameof(GetAllSuppliers))]
+        public IEnumerable<Supplier> GetAllSuppliers()
+        {
+
+            foreach (var supplier in _supplierService.GetAllSuppliers())
+            {
+                yield return supplier;
+            }
+
+
+
+        }
+
 
         // GET api/<SupplierController>/5
-        [HttpGet("{id}")]
-        public string Get(int id)
+        [HttpGet(nameof(GetSuppliersByID))]
+        public IActionResult GetSuppliersByID(Guid id)
         {
-            return "value";
+            var supplier = _supplierService.GetSupplierById(id);
+
+            if (supplier is not null)
+            {
+                return Ok(supplier);
+            }
+            return BadRequest("No records found");
         }
+
+
 
         // POST api/<SupplierController>
-        [HttpPost]
-        public void Post([FromBody] string value)
+        [HttpPost(nameof(InsertSuppliers))]
+        public IActionResult InsertSuppliers(Supplier supplier)
         {
+            _supplierService.InsertSupplier(supplier);
+            return Ok("Data succesfully inserted");
+
+
         }
 
+
         // PUT api/<SupplierController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        [HttpPut(nameof(UpdateSuppliers))]
+        public IActionResult UpdateSuppliers(Supplier supplier)
         {
+
+            _supplierService.UpdateSupplier(supplier);
+            return Ok("Updating done");
         }
 
         // DELETE api/<SupplierController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
+        [HttpDelete(nameof(DeleteSupplier))]
+        public IActionResult DeleteSupplier(Guid id)
         {
+            _supplierService.DeleteSupplier(id);
+            return Ok("Deleted Data!");
+
         }
     }
 }
