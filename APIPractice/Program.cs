@@ -7,13 +7,14 @@ using Microsoft.OpenApi.Models;
 using ServiceLayer.CategoryService;
 using ServiceLayer.ProductService;
 using ServiceLayer.SupplierService;
+using System.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
 
 
 //DB context configiration
 builder.Services.AddDbContext<AppDbContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultconnectionString")));
+    options.UseNpgsql(builder.Configuration.GetConnectionString("Default_Con")));
 
 builder.Services.AddScoped(typeof(IRepository<>),typeof(Repository<>));
 
