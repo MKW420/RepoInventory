@@ -5,11 +5,11 @@ VisualStudioVersion = 17.3.32804.467
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "APIPractice", "APIPractice\APIPractice.csproj", "{DD407A95-A695-4A1B-AB3A-0223A77BBD24}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DomainLayer", "Domain\DomainLayer.csproj", "{C7E7307A-65D8-4BF9-9429-6EFEF2FB5849}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DomainLayer", "Domain\DomainLayer.csproj", "{C7E7307A-65D8-4BF9-9429-6EFEF2FB5849}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RepositoryLayer", "Repository\RepositoryLayer.csproj", "{112562CB-E7AD-4EB2-B7F1-04EDCA235185}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RepositoryLayer", "Repository\RepositoryLayer.csproj", "{112562CB-E7AD-4EB2-B7F1-04EDCA235185}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServiceLayer", "Service\ServiceLayer.csproj", "{D2231784-2FD7-4F15-BCF9-160A6FE9792C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ServiceLayer", "Service\ServiceLayer.csproj", "{D2231784-2FD7-4F15-BCF9-160A6FE9792C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
