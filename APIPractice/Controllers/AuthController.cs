@@ -1,6 +1,8 @@
 ﻿using DomainLayer.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
+using ServiceLayer.UserService;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Security.Cryptography;
@@ -16,20 +18,32 @@ namespace APIPractice.Controllers
         public static User user = new User();
 
         private readonly IConfiguration _configuration;
+        private readonly IUserService _userService;
 
-        public AuthController(IConfiguration configuration)
+        public AuthController(IConfiguration configuration, IUserService userService)
         {
-            _configuration = configuration; 
+            _configuration = configuration;
+            _userService = userService;
+        }
+
+
+        [HttpGet(nameof(GetUser)), Authorize]
+
+        public ActionResult<string> GetUser()
+        {
+            var userName = _userService.getUserName();
+            return Ok(userName);
         }
 
         [HttpPost(nameof(Register))]
-
-        public async Task<ActionResult<User>> Register(UserDto request)
+        public  ActionResult<User> Register(UserDto request)
         {
-            CreatePasswordHash(request.Password, out byte[] passwordHash, out byte[] passwordSalt);
+            CreatePasswordHash(request.MainPassword, out byte[] passwordHash, out byte[] passwordSalt);
+          // string passwordHash = BCrypt.Net.BCrypt.HashPassword(request.MainPassword);
 
             user.Username = request.UserName;
             user.PasswordHash = passwordHash;
+           // user.PasswordHash = passwordHash;
             user.PasswordSalt = passwordSalt;
 
             return Ok(user);
@@ -39,8 +53,9 @@ namespace APIPractice.Controllers
         {
            using(var hmac = new HMACSHA512())
             {
-                passwordHash = hmac.ComputeHash(System.Text.Encoding.UTF8.GetBytes(password));
                 passwordSalt = hmac.Key;
+                passwordHash = hmac.ComputeHash(System.Text.Encoding.UTF8.GetBytes(password));
+              
             }
         }
 
@@ -49,13 +64,13 @@ namespace APIPractice.Controllers
         public async Task<ActionResult<string>> LoginUser(UserDto request)
         {
 
-            if(user.Username == request.UserName)
+            if(user.Username != request.UserName)
             {
                 return BadRequest("User not found");
 
             }
 
-            if(!VerifyPasswordHash(request.Password,user.PasswordHash, user.PasswordSalt))
+            if(!VerifyPasswordHash(request.MainPassword,user.PasswordHash, user.PasswordSalt))
             {
                 return BadRequest("Wrong Password");
             }

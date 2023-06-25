@@ -8,6 +8,10 @@ using ServiceLayer.CategoryService;
 using ServiceLayer.ProductService;
 using ServiceLayer.SupplierService;
 using System.Configuration;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
+using ServiceLayer.UserService;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -23,9 +27,29 @@ builder.Services.AddScoped<IBrandService, BrandService>();
 builder.Services.AddScoped<ICategoryService, CategoryService>();
 builder.Services.AddScoped<IProductService, ProductService>();
 builder.Services.AddScoped<ISupplierService, SupplierService>();
+builder.Services.AddScoped<IUserService, UserService>();
+
+builder.Services.AddHttpContextAccessor();
 
 // Add services to the container.
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+   .AddJwtBearer(options =>
+   {
+       options.TokenValidationParameters = new TokenValidationParameters
+       {
+           //Validates the server
+           ValidateIssuer = true,
+           //reciepent of the token
+           ValidateAudience = true,
+           //checks if token is expired
+           ValidateLifetime = true,
+           ValidIssuer = builder.Configuration["Jwt:Issuer"],
+           ValidAudience = builder.Configuration["Jwt:Audience"],
+           //validates the signature of the token
+           IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration.GetSection("AppSettings:Token").Value))
 
+       };
+   });
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 
@@ -38,8 +62,6 @@ builder.Services.AddSwaggerGen( c =>
     
     //GENERATE TOKEN CODE
 
-
-    
     );
 
 var app = builder.Build();
@@ -53,6 +75,9 @@ if (app.Environment.IsDevelopment())
 }
 
 
+app.UseAuthentication();
+
+app.UseAuthorization();
 
 app.UseHttpsRedirection();
 

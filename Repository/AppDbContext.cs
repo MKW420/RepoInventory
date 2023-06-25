@@ -13,15 +13,15 @@ namespace RepositoryLayer
         }
 
         //for the many to many reltionships between the tables
-       // protected override void OnModelCreating(ModelBuilder modelBuilder)
-       // {
-            //one to many reltionship between travellers and bookings
+        // protected override void OnModelCreating(ModelBuilder modelBuilder)
+        // {
+        //one to many reltionship between travellers and bookings
 
-           // base.OnModelCreating(modelBuilder);
+        // base.OnModelCreating(modelBuilder);
 
-      //  }
+        //  }
 
-
+    
         public DbSet<Brand> brand { get; set; }
         public DbSet<Category> categories { get; set; }
 

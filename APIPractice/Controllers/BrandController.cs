@@ -23,8 +23,6 @@ namespace APIPractice.Controllers
         }
 
 
-    
-
         // GET api/<BrandsController>/5
         [HttpGet(nameof(GetAllBrands))]
         public IEnumerable<Brand> GetAllBrands()
