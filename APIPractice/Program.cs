@@ -12,13 +12,14 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using ServiceLayer.UserService;
+using Swashbuckle.AspNetCore.Filters;
 
 var builder = WebApplication.CreateBuilder(args);
 
 
 //DB context configiration
 builder.Services.AddDbContext<AppDbContext>(options =>
-    options.UseNpgsql(builder.Configuration.GetConnectionString("Default_Con")));
+    options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnectionString")));
 
 builder.Services.AddScoped(typeof(IRepository<>),typeof(Repository<>));
 
@@ -38,13 +39,13 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
        options.TokenValidationParameters = new TokenValidationParameters
        {
            //Validates the server
-           ValidateIssuer = true,
+           ValidateIssuer = false,
            //reciepent of the token
-           ValidateAudience = true,
+           ValidateAudience = false,
            //checks if token is expired
-           ValidateLifetime = true,
-           ValidIssuer = builder.Configuration["Jwt:Issuer"],
-           ValidAudience = builder.Configuration["Jwt:Audience"],
+          // ValidateLifetime = true,
+        //   ValidIssuer = builder.Configuration["Jwt:Issuer"],
+       //    ValidAudience = builder.Configuration["Jwt:Audience"],
            //validates the signature of the token
            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration.GetSection("AppSettings:Token").Value))
 
@@ -57,6 +58,18 @@ builder.Services.AddEndpointsApiExplorer();
 
 builder.Services.AddSwaggerGen( c =>
 {
+    c.AddSecurityDefinition("oauth2", new OpenApiSecurityScheme
+    {
+        Description = "Standard Authorization header using the Bearer scheme(\"bearer {token}\")",
+       In = ParameterLocation.Header,
+       Name = "Authorization",
+       Type = SecuritySchemeType.ApiKey
+    
+    
+    });
+
+    c.OperationFilter<SecurityRequirementsOperationFilter>();
+
     c.SwaggerDoc("v1", new OpenApiInfo { Title = "InventorySystem", Version = "v1" });
 }
     

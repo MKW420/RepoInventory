@@ -93,7 +93,8 @@ namespace APIPractice.Controllers
         {
             List<Claim> claims = new List<Claim>
             {
-                new Claim(ClaimTypes.Name, user.Username)
+                new Claim(ClaimTypes.Name, user.Username),
+                new Claim(ClaimTypes.Role, "Admin")
             };
 
 
@@ -108,6 +109,55 @@ namespace APIPractice.Controllers
 
             var jwt = new JwtSecurityTokenHandler().WriteToken(token);
             return jwt;
+        }
+
+       [HttpPost(nameof(RefreshToken))]
+       
+        public async Task<ActionResult<string>> RefreshToken()
+       {
+           var refreshToken = Request.Cookies["refreshToken"];
+
+            if (!user.RefreshToken.Equals(refreshToken))
+            {
+                return Unauthorized("Invalid Refreshed Token");
+            }
+            else if(user.TokenExpires < DateTime.Now)
+            {
+                return Unauthorized("Token Expired");
+            }
+            string token = CreateToken(user);
+            var newRefreshToken = GenerateRefreshToken();
+            SetRefreshToken(newRefreshToken);
+
+            return Ok(token);
+
+        }
+
+        private void SetRefreshToken(RefreshToken newRefreshToken)
+        {
+            var cookieOptions = new CookieOptions
+            {
+                HttpOnly = true,
+                Expires = newRefreshToken.Expires
+            };
+
+            Response.Cookies.Append("refreshToken", newRefreshToken.Token, cookieOptions);
+
+            user.RefreshToken = newRefreshToken.Token;
+            user.TokenCreated = newRefreshToken.Created;
+            user.TokenExpires = newRefreshToken.Expires;
+        }
+
+        private RefreshToken GenerateRefreshToken()
+        {
+            var refreshToken = new RefreshToken
+            {
+                Token = Convert.ToBase64String(RandomNumberGenerator.GetBytes(64)),
+                Expires = DateTime.Now.AddDays(7),
+                Created = DateTime.Now
+            };
+
+          return refreshToken;
         }
     }
 }

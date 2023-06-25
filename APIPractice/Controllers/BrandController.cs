@@ -3,6 +3,7 @@ using DomainLayer.Models;
 using Microsoft.AspNetCore.Mvc;
 using ServiceLayer.BrandService;
 using System.Reflection.Metadata.Ecma335;
+using Microsoft.AspNetCore.Authorization;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -10,6 +11,7 @@ namespace APIPractice.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+ //   [Authorize]
     public class BrandController : ControllerBase
     {
 
@@ -24,7 +26,7 @@ namespace APIPractice.Controllers
 
 
         // GET api/<BrandsController>/5
-        [HttpGet(nameof(GetAllBrands))]
+        [HttpGet(nameof(GetAllBrands)), Authorize(Roles = "Admin")]
         public IEnumerable<Brand> GetAllBrands()
         {
             
