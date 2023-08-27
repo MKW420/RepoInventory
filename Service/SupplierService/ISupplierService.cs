@@ -12,13 +12,13 @@ namespace ServiceLayer.SupplierService
     {
 
 
-        IEnumerable<Supplier> GetAllSuppliers();
+        IEnumerable<Suppliers> GetAllSuppliers();
 
-        Supplier GetSupplierById(Guid id);
+        Suppliers GetSupplierById(Guid id);
 
-        void InsertSupplier(Supplier supplier);
+        void InsertSupplier(Suppliers supplier);
 
-        void UpdateSupplier(Supplier supplier);
+        void UpdateSupplier(Suppliers supplier);
 
         void DeleteSupplier(Guid id);
 

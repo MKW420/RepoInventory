@@ -20,8 +20,8 @@ namespace APIPractice.Controllers
 
         // GET: api/<SupplierController>
         [HttpGet(nameof(GetAllSuppliers))]
-        public IEnumerable<Supplier> GetAllSuppliers()
-        {
+        public IEnumerable<Suppliers> GetAllSuppliers()
+        { 
 
             foreach (var supplier in _supplierService.GetAllSuppliers())
             {
@@ -50,7 +50,7 @@ namespace APIPractice.Controllers
 
         // POST api/<SupplierController>
         [HttpPost(nameof(InsertSuppliers))]
-        public IActionResult InsertSuppliers(Supplier supplier)
+        public IActionResult InsertSuppliers(Suppliers supplier)
         {
             _supplierService.InsertSupplier(supplier);
             return Ok("Data succesfully inserted");
@@ -61,7 +61,7 @@ namespace APIPractice.Controllers
 
         // PUT api/<SupplierController>/5
         [HttpPut(nameof(UpdateSuppliers))]
-        public IActionResult UpdateSuppliers(Supplier supplier)
+        public IActionResult UpdateSuppliers(Suppliers supplier)
         {
 
             _supplierService.UpdateSupplier(supplier);

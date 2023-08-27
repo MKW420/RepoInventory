@@ -11,7 +11,7 @@ namespace APIPractice.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
- //   [Authorize]
+ // [Authorize]
     public class BrandController : ControllerBase
     {
 
@@ -24,7 +24,9 @@ namespace APIPractice.Controllers
            _brandService = brandService;
         }
 
-
+        /// <summary>
+        /// Gets a specific TodoItem.
+        ///</summary>
         // GET api/<BrandsController>/5
         [HttpGet(nameof(GetAllBrands)), Authorize(Roles = "Admin")]
         public IEnumerable<Brand> GetAllBrands()
@@ -37,6 +39,9 @@ namespace APIPractice.Controllers
 
         }
 
+        /// <summary>
+        /// Gets a specific TodoItem.
+        /// </summary>
         //// GET: api/<BrandsController>
         [HttpGet(nameof(GetBrandByID))]
         public IActionResult GetBrandByID(Guid id)
@@ -50,6 +55,9 @@ namespace APIPractice.Controllers
             return BadRequest("No records found");
         }
 
+        /// <summary>
+        /// Inserts a specific TodoItem.
+        ///</summary>
         // POST api/<BrandsController>
         [HttpPost(nameof(InsertBrand))]
         public IActionResult InsertBrand(Brand brand)

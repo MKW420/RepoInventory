@@ -61,7 +61,7 @@ namespace APIPractice.Controllers
         {
             foreach (var product in _productService.GetAllProducts())
             {
-                if (product.On_Sale)
+                if (product.on_sale)
                 {
                     yield return product;
                 }
@@ -76,7 +76,7 @@ namespace APIPractice.Controllers
            
             foreach (var product in _productService.GetAllProducts())
             {
-                if (!product.On_Sale)
+                if (!product.on_sale)
                 {
                     yield return product;
                 }

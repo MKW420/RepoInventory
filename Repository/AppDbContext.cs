@@ -23,9 +23,9 @@ namespace RepositoryLayer
 
     
         public DbSet<Brand> brand { get; set; }
-        public DbSet<Category> categories { get; set; }
+        public DbSet<Category> category { get; set; }
 
-        public DbSet<Supplier> suppliers { get; set; }
+        public DbSet<Suppliers> suppliers { get; set; }
 
         public DbSet<Product> product { get; set; }
 

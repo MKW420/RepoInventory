@@ -36,7 +36,7 @@ namespace ServiceLayer.ProductService
 
             try
             {
-                var obj = _repository.GetAll().ToList();
+                var obj = _repository.GetAll();
 
                 if (obj != null)
                 {

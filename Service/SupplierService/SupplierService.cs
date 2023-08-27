@@ -14,9 +14,9 @@ namespace ServiceLayer.SupplierService
 
 
 
-        private IRepository<Supplier> _repository;
+        private IRepository<Suppliers> _repository;
 
-        public SupplierService(IRepository<Supplier> repository)
+        public SupplierService(IRepository<Suppliers> repository)
         {
             _repository = repository;
         }
@@ -27,7 +27,7 @@ namespace ServiceLayer.SupplierService
             {
                 if (id != null)
                 {
-                    Supplier supplier = GetSupplierById(id);
+                    Suppliers supplier = GetSupplierById(id);
                     _repository.Remove(supplier);
                     _repository.SaveChanges();
 
@@ -40,7 +40,7 @@ namespace ServiceLayer.SupplierService
             }
         }
 
-        public IEnumerable<Supplier> GetAllSuppliers()
+        public IEnumerable<Suppliers> GetAllSuppliers()
         {
             try
             {
@@ -62,7 +62,7 @@ namespace ServiceLayer.SupplierService
             }
         }
 
-        public Supplier GetSupplierById(Guid id)
+        public Suppliers GetSupplierById(Guid id)
         {
             try
             {
@@ -82,12 +82,12 @@ namespace ServiceLayer.SupplierService
             }
         }
 
-        public void InsertSupplier(Supplier supplier)
+        public void InsertSupplier(Suppliers supplier)
         {
             _repository.Insert(supplier);
         }
 
-        public void UpdateSupplier(Supplier supplier)
+        public void UpdateSupplier(Suppliers supplier)
         {
             try
             {

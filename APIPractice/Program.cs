@@ -19,7 +19,11 @@ var builder = WebApplication.CreateBuilder(args);
 
 //DB context configiration
 builder.Services.AddDbContext<AppDbContext>(options =>
-    options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnectionString")));
+    options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnectionString"),
+    npgsqlOptionsAction: sqlOptions =>
+    {
+        sqlOptions.EnableRetryOnFailure();
+    }));
 
 builder.Services.AddScoped(typeof(IRepository<>),typeof(Repository<>));
 

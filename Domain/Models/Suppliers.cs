@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace APIPractice.Models
 {
-    public class Supplier: EntityBaseRepository
+    public class Suppliers: EntityBaseRepository
     {
         //[ForeignKey]
         public Guid Brand_Id { get; set; }
