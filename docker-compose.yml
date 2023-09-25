@@ -1,0 +1,8 @@
+version: '3.4'
+
+services:
+  apipractice:
+    image: ${DOCKER_REGISTRY-}apipractice
+    build:
+      context: .
+      dockerfile: Dockerfile
