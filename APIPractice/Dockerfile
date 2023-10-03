@@ -14,10 +14,10 @@ COPY ["Service/ServiceLayer.csproj", "Service/"]
 RUN dotnet restore "APIPractice/APIPractice.csproj"
 COPY . .
 WORKDIR "/src/APIPractice"
-RUN dotnet build "APIPractice.csproj" -c Debug -o /app/build
+RUN dotnet build "APIPractice.csproj" -c Release -o /app/build
 
 FROM build AS publish
-RUN dotnet publish "APIPractice.csproj" -c Debug -o /app/publish /p:UseAppHost=false
+RUN dotnet publish "APIPractice.csproj" -c Release -o /app/publish /p:UseAppHost=false
 
 FROM base AS final
 WORKDIR /app
