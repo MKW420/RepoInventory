@@ -4,6 +4,7 @@
 - Swagger
 - Docker Container/Images
 - C#
+- PostgreSQL 
   
 **Architecture design: Onion Architecture**
 - Domain Layer
